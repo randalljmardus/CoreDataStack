@@ -23,8 +23,6 @@ class CDHelper {
         return url
     }()
     
-    
-    
     lazy var modelURL: NSURL = {
         let bundle = NSBundle.mainBundle()
         
@@ -41,5 +39,28 @@ class CDHelper {
     lazy var model: NSManagedObjectModel = {
         return NSManagedObjectModel(contentsOfURL: self.modelURL)!
     }()
+    
+    lazy var coordinator: NSPersistentStoreCoordinator = {
+        let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.model)
+        
+        do {
+            try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: self.localStoreURL, options: nil)
+        } catch {
+            print("Could not add the persistent store")
+            abort()
+        }
+        
+        return coordinator
+        
+    }()
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }
