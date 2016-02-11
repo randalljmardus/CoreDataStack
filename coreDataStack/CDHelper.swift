@@ -11,6 +11,8 @@ import CoreData
 
 class CDHelper {
     
+    static let sharedInstance = CDHelper()
+    
     lazy var storesDirectory: NSURL = {
         let fm = NSFileManager.defaultManager()
         
